@@ -1,0 +1,159 @@
+/* Semantic web tokens based on Apple's HIG system grays and accessible blues.
+   https://developer.apple.com/design/human-interface-guidelines/color */
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/roboto-regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 600 700;
+  font-display: swap;
+  src: url("../fonts/roboto-bold.woff2") format("woff2");
+}
+:root {
+  color-scheme: dark;
+  --background: #1c1c1e;
+  --text: #f2f2f7;
+  --secondary: #aeaeb2;
+  --link: #5cb8ff;
+  --selection-text: #ffffff;
+  --selection-background: #1e6ef4;
+  --media-column-width: 232px;
+  --media-radius: 10px;
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --background: #ffffff;
+  --text: #1c1c1e;
+  --secondary: #636366;
+  --link: #1e6ef4;
+}
+* { box-sizing: border-box; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    color-scheme: light;
+    --background: #ffffff;
+    --text: #1c1c1e;
+    --secondary: #636366;
+    --link: #1e6ef4;
+  }
+}
+html { background: var(--background); scroll-padding-top: 1.5rem; }
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--background);
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+[hidden] { display: none !important; }
+a, .appearance span {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--secondary);
+  text-decoration-thickness: 0.0625rem;
+  text-underline-offset: 0.1em;
+}
+a:hover, a:focus-visible,
+.appearance:hover span, .appearance:focus-visible span {
+  color: var(--link);
+  text-decoration-style: solid;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 0.1875rem;
+}
+:where(a, button):focus-visible { outline: 3px solid var(--link); outline-offset: 4px; border-radius: 4px; }
+::selection { color: var(--selection-text); background: var(--selection-background); }
+.container { width: 100%; max-width: 1120px; margin-inline: auto; padding-inline: 32px; }
+.skip-link { position: absolute; top: 12px; left: 16px; z-index: 2; padding: 10px 16px; background: var(--background); transform: translateY(-180%); }
+.skip-link:focus { transform: translateY(0); }
+.site-tools { display: flex; justify-content: flex-end; padding-top: 20px; min-height: 72px; }
+.appearance {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 0 8px 12px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.appearance:hover, .appearance:focus-visible { color: var(--link); }
+.appearance svg { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.appearance .moon-icon { display: none; }
+:root[data-theme="light"] .appearance .moon-icon { display: block; }
+:root[data-theme="light"] .appearance .sun-icon { display: none; }
+.profile { display: grid; grid-template-columns: var(--media-column-width) minmax(0, 1fr); gap: 32px; align-items: center; padding-block: 24px 44px; }
+.portrait img { display: block; width: 100%; height: auto; aspect-ratio: 1; border-radius: var(--media-radius); }
+.intro { min-width: 0; }
+h1, h2, h3 { margin: 0 0 0.65rem; font-weight: 600; line-height: 1.25; text-wrap: pretty; }
+h1 { font-size: 2.125rem; letter-spacing: -0.035em; }
+h2 { font-size: 1.625rem; letter-spacing: -0.025em; }
+h3 { font-size: 1.125rem; }
+p { margin: 0 0 1rem; }
+.contact { overflow-wrap: anywhere; line-height: 1.8; }
+.bio { margin-top: 1rem; }
+.bio p:last-child { margin-bottom: 0; }
+main section { margin-bottom: 40px; }
+ul { margin-top: 0; padding-left: 1.5rem; }
+ul:empty { margin-bottom: 1rem; }
+.placeholder { color: var(--secondary); }
+.awards-list li + li { margin-top: 12px; }
+.paper { display: grid; grid-template-columns: var(--media-column-width) minmax(0, 1fr); gap: 32px; align-items: center; padding-block: 12px; }
+.paper + .paper { margin-top: 16px; }
+.paper-image { display: block; border-radius: var(--media-radius); }
+.paper-image img, .paper-image video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; border-radius: var(--media-radius); }
+.paper-image video:focus-visible { outline: 3px solid var(--link); outline-offset: 4px; }
+.paper-details { min-width: 0; }
+.paper-details h3 { font-weight: 600; margin-bottom: 8px; }
+.paper-details p { margin-bottom: 4px; }
+.paper-details p:not(.paper-links) { color: var(--secondary); }
+.paper-details strong { color: var(--text); font-weight: 600; }
+.paper-details .paper-links { margin-bottom: 0; }
+.paper-links a { display: inline-flex; align-items: center; min-height: 44px; }
+footer { padding-block: 8px 32px; text-align: center; color: var(--secondary); font-size: 14px; }
+@media (min-width: 681px) and (max-width: 1000px) {
+  :root { --media-column-width: 176px; }
+  .profile, .paper { gap: 28px; }
+  .profile { align-items: start; padding-top: 28px; }
+  .portrait { padding-top: 6px; }
+}
+@media (max-width: 680px) {
+  .container { padding-inline: 24px; }
+  .site-tools { padding-top: 12px; min-height: 64px; }
+  .profile { grid-template-columns: 1fr; gap: 24px; padding-block: 24px 36px; }
+  .portrait img { width: 176px; max-width: 100%; margin-inline: 0; }
+  h1 { font-size: 2rem; }
+  .paper { grid-template-columns: 1fr; gap: 16px; padding-top: 12px; }
+  .paper-image { width: 100%; max-width: 480px; }
+  .paper + .paper { margin-top: 24px; }
+  main section { margin-bottom: 32px; }
+}
+@media (prefers-contrast: more) {
+  :root { --text: #ffffff; --secondary: #f2f2f7; }
+  :root[data-theme="light"] { --text: #000000; --secondary: #1c1c1e; }
+  a { text-decoration: underline; }
+}
+@media (forced-colors: active) {
+  .appearance { color: ButtonText; }
+}
+@media (prefers-color-scheme: light) and (prefers-contrast: more) {
+  :root:not([data-theme]) { --text: #000000; --secondary: #1c1c1e; }
+}
+@media print {
+  :root, :root[data-theme="light"] { color-scheme: light; --background: #ffffff; --text: #000000; --secondary: #1c1c1e; --link: #000000; }
+  .site-tools, .skip-link { display: none; }
+  .profile { padding-top: 0; }
+  .paper { break-inside: avoid; }
+  a { text-decoration: underline; }
+}
